@@ -1,1 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nta>
+  <declaration>// Global declarations
+clock x;</declaration>
+  <template>
+    <name>CollisionAvoidance</name>
+    <declaration>// Local declarations</declaration>
+    <location id="id0" x="100" y="100">
+      <name>Idle</name>
+    </location>
+    <location id="id1" x="300" y="100">
+      <name>Detect</name>
+    </location>
+    <location id="id2" x="500" y="100">
+      <name>Decide</name>
+    </location>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id1"/>
+      <label kind="synchronisation">// sensor!</label>
+      <label kind="assignment">x = 0</label>
+    </transition>
+    <transition>
+      <source ref="id1"/>
+      <target ref="id2"/>
+      <label kind="guard">x &lt;= 20</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id0"/>
+      <label kind="guard">x &lt;= 50</label>
+      <label kind="synchronisation">// brake!</label>
+    </transition>
+  </template>
+  <system>system CollisionAvoidance;</system>
+</nta>
 
